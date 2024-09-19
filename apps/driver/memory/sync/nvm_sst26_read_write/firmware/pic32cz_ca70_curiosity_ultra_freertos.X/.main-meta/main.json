@@ -1,0 +1,76 @@
+{
+	"metaDataVersion": "1.0.0",
+	"category": "com.microchip.ide.project",
+	"content": {
+		"metaDataVersion": "1.1.0",
+		"name": "com.microchip.mcu32.mplabx.project.core_apps_pic32cz_ca70_driver_memory_sync_nvm_sst26_read_write_pic32cz_ca70_curiosity_ultra_freertos",
+		"version": "3.2.0",
+		"displayName": "Memory driver synchronous - NVM SST26 Read Write Example for PIC32CZ CA70 Family",
+		"projectName": "sync_nvm_sst26_read_write_pic32cz_ca70_curiosity_ultra_freertos",
+		"shortDescription": "This example application shows how to use the Memory driver in synchronous mode to perform block operations on the NVM and the SST26 media's.",
+		"ide": {
+			"name": "MPLABX",
+			"semverRange": ">=6.0.0"
+		},
+		"compiler": [
+			{
+				"name": "XC32",
+				"semverRange": ">=4.1.0"
+			}
+		],
+		"dfp": {
+			"name": "CMSIS",
+			"semverRange": "^5.4.0"
+		},
+		"configurator": {
+			"name": "MCC",
+			"semverRange": ">=5.3.0"
+		},
+		"device": {
+			"metaDataVersion": "1.0.0",
+			"category": "com.microchip.portal.contentRef",
+			"content": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.device",
+				"name": "PIC32CZ2051CA70144",
+				"versionRange": "*"
+			}
+		},
+		"author": "Microchip",
+		"subcategories": [
+			[
+				"Development Kit",
+				"PIC32CZ CA70 Curiosity Ultra board"
+			],
+			[
+				"Harmony",
+				"Drivers",
+				"MEMORY"
+			],
+			[
+				"Peripherals",
+				"MEMORY"
+			]
+		],
+		"peripherals": [
+			"MEMORY"
+		],
+		"keywords": [
+			"MHC",
+			"Harmony",
+			"PIC32CZ2051CA70144",
+			"PIC32CZ CA70 Family"
+		],
+		"additionalData": {
+			"longDescription": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.portal.fileRef",
+				"content": {
+					"metaDataVersion": "1.0.0",
+					"fileName": "./../../readme.md",
+					"mimeType": "text/markdown"
+				}
+			}
+		}
+	}
+}
