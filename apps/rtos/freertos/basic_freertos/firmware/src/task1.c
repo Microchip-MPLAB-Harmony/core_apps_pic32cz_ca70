@@ -126,7 +126,7 @@ void TASK1_Initialize ( void )
     {
         /* There was insufficient FreeRTOS heap available for the semaphore to
         be created successfully. */
-        USART1_Write((uint8_t*)"Could not create mutex lock\r\n", strlen("Could not create mutex lock\r\n"));
+        USART0_Write((uint8_t*)"Could not create mutex lock\r\n", strlen("Could not create mutex lock\r\n"));
     }
 }
 
@@ -146,7 +146,7 @@ void TASK1_Tasks ( void )
     {
         /* Task1 is running (<-) now */
         xSemaphoreTake(uartMutexLock, portMAX_DELAY);
-        USART1_Write((uint8_t*)"Tsk1-P1 <-\r\n", 12);
+        USART0_Write((uint8_t*)"Tsk1-P1 <-\r\n", 12);
         xSemaphoreGive(uartMutexLock);
 
         /* Work done by task1 for 100 ticks */
@@ -155,7 +155,7 @@ void TASK1_Tasks ( void )
 
         /* Task1 is exiting (->) now */
         xSemaphoreTake(uartMutexLock, portMAX_DELAY);
-        USART1_Write((uint8_t*)"Tsk1-P1 ->\r\n", 12);
+        USART0_Write((uint8_t*)"Tsk1-P1 ->\r\n", 12);
         xSemaphoreGive(uartMutexLock);
 
         /* Let idle task run for some time*/

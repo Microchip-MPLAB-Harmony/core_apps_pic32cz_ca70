@@ -52,6 +52,7 @@
 
 #include "configuration.h"
 #include "definitions.h"
+#include "sys_tasks.h"
 
 
 // *****************************************************************************
@@ -59,42 +60,54 @@
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
+
 /* Handle for the TASK1_Tasks. */
 TaskHandle_t xTASK1_Tasks;
 
-void _TASK1_Tasks(  void *pvParameters  )
+
+
+static void lTASK1_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         TASK1_Tasks();
     }
 }
+
 /* Handle for the TASK2_Tasks. */
 TaskHandle_t xTASK2_Tasks;
 
-void _TASK2_Tasks(  void *pvParameters  )
+
+
+static void lTASK2_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         TASK2_Tasks();
     }
 }
+
 /* Handle for the TASK3_Tasks. */
 TaskHandle_t xTASK3_Tasks;
 
-void _TASK3_Tasks(  void *pvParameters  )
+
+
+static void lTASK3_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         TASK3_Tasks();
     }
 }
+
 /* Handle for the TASK4_Tasks. */
 TaskHandle_t xTASK4_Tasks;
 
-void _TASK4_Tasks(  void *pvParameters  )
+
+
+static void lTASK4_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         TASK4_Tasks();
     }
@@ -128,38 +141,42 @@ void SYS_Tasks ( void )
     
 
     /* Maintain the application's state machine. */
-        /* Create OS Thread for TASK1_Tasks. */
-    xTaskCreate((TaskFunction_t) _TASK1_Tasks,
-                "TASK1_Tasks",
-                1024,
-                NULL,
-                1,
-                &xTASK1_Tasks);
+    
+    /* Create OS Thread for TASK1_Tasks. */
+    (void) xTaskCreate(
+           (TaskFunction_t) lTASK1_Tasks,
+           "TASK1_Tasks",
+           1024,
+           NULL,
+           1U ,
+           &xTASK1_Tasks);
 
     /* Create OS Thread for TASK2_Tasks. */
-    xTaskCreate((TaskFunction_t) _TASK2_Tasks,
-                "TASK2_Tasks",
-                1024,
-                NULL,
-                2,
-                &xTASK2_Tasks);
+    (void) xTaskCreate(
+           (TaskFunction_t) lTASK2_Tasks,
+           "TASK2_Tasks",
+           1024,
+           NULL,
+           2U ,
+           &xTASK2_Tasks);
 
     /* Create OS Thread for TASK3_Tasks. */
-    xTaskCreate((TaskFunction_t) _TASK3_Tasks,
-                "TASK3_Tasks",
-                1024,
-                NULL,
-                3,
-                &xTASK3_Tasks);
+    (void) xTaskCreate(
+           (TaskFunction_t) lTASK3_Tasks,
+           "TASK3_Tasks",
+           1024,
+           NULL,
+           3U ,
+           &xTASK3_Tasks);
 
     /* Create OS Thread for TASK4_Tasks. */
-    xTaskCreate((TaskFunction_t) _TASK4_Tasks,
-                "TASK4_Tasks",
-                1024,
-                NULL,
-                4,
-                &xTASK4_Tasks);
-
+    (void) xTaskCreate(
+           (TaskFunction_t) lTASK4_Tasks,
+           "TASK4_Tasks",
+           1024,
+           NULL,
+           4U ,
+           &xTASK4_Tasks);
 
 
 

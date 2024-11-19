@@ -1,14 +1,14 @@
 /*******************************************************************************
-  USART1 PLIB
+  USART0 PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_usart1.h
+    plib_usart0.h
 
   Summary:
-    USART1 PLIB Header File
+    USART0 PLIB Header File
 
   Description:
     None
@@ -38,8 +38,8 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#ifndef PLIB_USART1_H
-#define PLIB_USART1_H
+#ifndef PLIB_USART0_H
+#define PLIB_USART0_H
 
 #include "plib_usart_common.h"
 
@@ -57,45 +57,45 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define USART1_FrequencyGet()    (uint32_t)(150000000UL)
+#define USART0_FrequencyGet()    (uint32_t)(150000000UL)
 
-/****************************** USART1 API *********************************/
+/****************************** USART0 API *********************************/
 
-void USART1_Initialize( void );
+void USART0_Initialize( void );
 
-bool USART1_SerialSetup( USART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
+bool USART0_SerialSetup( USART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
 
-USART_ERROR USART1_ErrorGet( void );
+USART_ERROR USART0_ErrorGet( void );
 
-size_t USART1_Write(uint8_t* pWrBuffer, const size_t size );
+size_t USART0_Write(uint8_t* pWrBuffer, const size_t size );
 
-size_t USART1_WriteCountGet(void);
+size_t USART0_WriteCountGet(void);
 
-size_t USART1_WriteFreeBufferCountGet(void);
+size_t USART0_WriteFreeBufferCountGet(void);
 
-size_t USART1_WriteBufferSizeGet(void);
+size_t USART0_WriteBufferSizeGet(void);
 
-bool USART1_TransmitComplete(void);
+bool USART0_TransmitComplete(void);
 
-bool USART1_WriteNotificationEnable(bool isEnabled, bool isPersistent);
+bool USART0_WriteNotificationEnable(bool isEnabled, bool isPersistent);
 
-void USART1_WriteThresholdSet(uint32_t nBytesThreshold);
+void USART0_WriteThresholdSet(uint32_t nBytesThreshold);
 
-void USART1_WriteCallbackRegister( USART_RING_BUFFER_CALLBACK callback, uintptr_t context);
+void USART0_WriteCallbackRegister( USART_RING_BUFFER_CALLBACK callback, uintptr_t context);
 
-size_t USART1_Read(uint8_t* pRdBuffer, const size_t size);
+size_t USART0_Read(uint8_t* pRdBuffer, const size_t size);
 
-size_t USART1_ReadCountGet(void);
+size_t USART0_ReadCountGet(void);
 
-size_t USART1_ReadFreeBufferCountGet(void);
+size_t USART0_ReadFreeBufferCountGet(void);
 
-size_t USART1_ReadBufferSizeGet(void);
+size_t USART0_ReadBufferSizeGet(void);
 
-bool USART1_ReadNotificationEnable(bool isEnabled, bool isPersistent);
+bool USART0_ReadNotificationEnable(bool isEnabled, bool isPersistent);
 
-void USART1_ReadThresholdSet(uint32_t nBytesThreshold);
+void USART0_ReadThresholdSet(uint32_t nBytesThreshold);
 
-void USART1_ReadCallbackRegister( USART_RING_BUFFER_CALLBACK callback, uintptr_t context);
+void USART0_ReadCallbackRegister( USART_RING_BUFFER_CALLBACK callback, uintptr_t context);
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -105,4 +105,4 @@ void USART1_ReadCallbackRegister( USART_RING_BUFFER_CALLBACK callback, uintptr_t
 #endif
 
 // DOM-IGNORE-END
-#endif // PLIB_USART1_H
+#endif // PLIB_USART0_H
