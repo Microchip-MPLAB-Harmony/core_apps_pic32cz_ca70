@@ -67,6 +67,7 @@
           <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/configuration.h</itemPath>
           <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/interrupts.h</itemPath>
           <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/device_vectors.h</itemPath>
+          <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/sys_tasks.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f2" displayName="packs" projectFiles="true">
@@ -128,6 +129,7 @@
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/wdt.h</itemPath>
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/xdmac.h</itemPath>
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/fuses.h</itemPath>
+            <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/mlb.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="instance" projectFiles="true">
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/acc.h</itemPath>
@@ -186,6 +188,7 @@
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/wdt.h</itemPath>
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/xdmac.h</itemPath>
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/fuses.h</itemPath>
+            <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/mlb.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f3" displayName="pio" projectFiles="true">
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/pio/pic32cz2051ca70144.h</itemPath>
@@ -283,9 +286,9 @@
         <targetDevice>PIC32CZ2051CA70144</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>EdbgTool</platformTool>
+        <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.10</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
