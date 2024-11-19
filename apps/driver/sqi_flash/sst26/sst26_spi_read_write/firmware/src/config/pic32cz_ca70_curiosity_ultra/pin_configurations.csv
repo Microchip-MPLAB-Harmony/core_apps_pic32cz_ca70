@@ -45,7 +45,7 @@
 54,PC6,,Available,In,,,,,,,
 55,PD24,,Available,In,,,,,,,
 56,PA24,,Available,In,,,,,,,
-57,PD23,,Available,In,,,,,,,
+57,PD23,LED0,LED_AL,n/a,n/a,No,Disabled,No,No,Disabled,Low
 58,PC5,,Available,In,,,,,,,
 59,PA25,,Available,In,,,,,,,
 60,PD22,,Available,In,,,,,,,
@@ -59,7 +59,7 @@
 69,PD18,,Available,In,,,,,,,
 70,PA27,,Available,In,,,,,,,
 71,PD28,,Available,In,,,,,,,
-73,PA5,LED1,LED_AL,n/a,n/a,No,Disabled,No,No,Disabled,Low
+73,PA5,,Available,In,,,,,,,
 74,PD17,,Available,In,,,,,,,
 75,PA9,,Available,In,,,,,,,
 76,PC28,,Available,In,,,,,,,
@@ -86,7 +86,7 @@
 103,PC17,,Available,In,,,,,,,
 105,PB4,,Available,In,,,,,,,
 106,PD15,,Available,In,,,,,,,
-108,PD29,,Available,In,,,,,,,
+108,PD29,LED1,LED_AL,n/a,n/a,No,Disabled,No,No,Disabled,Low
 109,PB5,,Available,In,,,,,,,
 110,PD9,,Available,In,,,,,,,
 111,PC18,,Available,In,,,,,,,
@@ -110,6 +110,6 @@
 131,PD2,,Available,In,,,,,,,
 132,PD1,,Available,In,,,,,,,
 133,PC25,,Available,In,,,,,,,
-141,PB8,LED2,LED_AL,n/a,n/a,No,Disabled,No,No,Disabled,Low
+141,PB8,,Available,In,,,,,,,
 142,PB9,,Available,In,,,,,,,
 144,PB13,,Available,In,,,,,,,
