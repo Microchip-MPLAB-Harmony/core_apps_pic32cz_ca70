@@ -48,7 +48,6 @@
 #include "device.h"
 
 
-
 // ****************************************************************************
 // ****************************************************************************
 // Section: Configuration Bits
@@ -66,19 +65,24 @@
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+/* Following MISRA-C rules are deviated in the below code block */
+/* MISRA C-2012 Rule 7.2 - Deviation record ID - H3_MISRAC_2012_R_7_2_DR_1 */
+/* MISRA C-2012 Rule 11.1 - Deviation record ID - H3_MISRAC_2012_R_11_1_DR_1 */
+/* MISRA C-2012 Rule 11.3 - Deviation record ID - H3_MISRAC_2012_R_11_3_DR_1 */
+/* MISRA C-2012 Rule 11.8 - Deviation record ID - H3_MISRAC_2012_R_11_8_DR_1 */
 // <editor-fold defaultstate="collapsed" desc="DRV_AT24 Initialization Data">
 
 /* I2C PLIB Interface Initialization for AT24 Driver */
-const DRV_AT24_PLIB_INTERFACE drvAT24PlibAPI = {
+static const DRV_AT24_PLIB_INTERFACE drvAT24PlibAPI = {
 
     /* I2C PLIB WriteRead function */
     .writeRead = (DRV_AT24_PLIB_WRITE_READ)TWIHS0_WriteRead,
 
     /* I2C PLIB Write function */
-    .write = (DRV_AT24_PLIB_WRITE)TWIHS0_Write,
+    .write_t = (DRV_AT24_PLIB_WRITE)TWIHS0_Write,
 
     /* I2C PLIB Read function */
-    .read = (DRV_AT24_PLIB_READ)TWIHS0_Read,
+    .read_t = (DRV_AT24_PLIB_READ)TWIHS0_Read,
 
     /* I2C PLIB Transfer Status function */
     .isBusy = (DRV_AT24_PLIB_IS_BUSY)TWIHS0_IsBusy,
@@ -91,13 +95,13 @@ const DRV_AT24_PLIB_INTERFACE drvAT24PlibAPI = {
 };
 
 /* AT24 Driver Initialization Data */
-const DRV_AT24_INIT drvAT24InitData =
+static const DRV_AT24_INIT drvAT24InitData =
 {
     /* I2C PLIB API  interface*/
     .i2cPlib = &drvAT24PlibAPI,
 
     /* 7-bit I2C Slave address */
-    .slaveAddress = 0x57,
+    .slaveAddress = 0x56,
 
     /* EEPROM Page Size in bytes */
     .pageSize = DRV_AT24_EEPROM_PAGE_SIZE,
@@ -110,8 +114,8 @@ const DRV_AT24_INIT drvAT24InitData =
 
     .blockStartAddress =    0x0,
 };
-
 // </editor-fold>
+
 
 
 // *****************************************************************************
@@ -143,7 +147,7 @@ SYSTEM_OBJECTS sysObj;
 // *****************************************************************************
 // *****************************************************************************
 
-
+/* MISRAC 2012 deviation block end */
 
 /*******************************************************************************
   Function:
@@ -158,6 +162,9 @@ SYSTEM_OBJECTS sysObj;
 void SYS_Initialize ( void* data )
 {
 
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 2.2 deviated in this file.  Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1 */
+
 
     EFC_Initialize();
   
@@ -166,26 +173,33 @@ void SYS_Initialize ( void* data )
 
 
 
-	BSP_Initialize();
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
 
 	WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk; 		// Disable WDT 
 
 	TWIHS0_Initialize();
 
+	BSP_Initialize();
+
+    /* MISRAC 2012 deviation block start */
+    /* Following MISRA-C rules deviated in this block  */
+    /* MISRA C-2012 Rule 11.3 - Deviation record ID - H3_MISRAC_2012_R_11_3_DR_1 */
+    /* MISRA C-2012 Rule 11.8 - Deviation record ID - H3_MISRAC_2012_R_11_8_DR_1 */
 
     sysObj.drvAT24 = DRV_AT24_Initialize(DRV_AT24_INDEX, (SYS_MODULE_INIT *)&drvAT24InitData);
 
 
 
 
+    /* MISRAC 2012 deviation block end */
     APP_Initialize();
 
 
     NVIC_Initialize();
 
-}
 
+    /* MISRAC 2012 deviation block end */
+}
 
 /*******************************************************************************
  End of File
