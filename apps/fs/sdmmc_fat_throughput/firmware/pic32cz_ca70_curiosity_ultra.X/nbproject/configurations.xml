@@ -5,12 +5,17 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="config" projectFiles="true">
-        <logicalFolder name="f1" displayName="pic32cz_ca70_curiosity_ultra" projectFiles="true">
+        <logicalFolder name="f1"
+                       displayName="pic32cz_ca70_curiosity_ultra"
+                       projectFiles="true">
           <logicalFolder name="f1" displayName="bsp" projectFiles="true">
             <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/bsp/bsp.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="sdmmc" projectFiles="true">
+              <logicalFolder name="src" displayName="src" projectFiles="true">
+                <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/driver/sdmmc/src/drv_sdmmc_file_system.h</itemPath>
+              </logicalFolder>
               <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/driver/sdmmc/drv_sdmmc.h</itemPath>
               <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/driver/sdmmc/src/drv_sdmmc_local.h</itemPath>
               <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/driver/sdmmc/drv_sdmmc_definitions.h</itemPath>
@@ -44,9 +49,9 @@
               <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/tc/plib_tc0.h</itemPath>
               <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/tc/plib_tc_common.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="usart" projectFiles="true">
-              <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/usart/plib_usart_common.h</itemPath>
-              <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/usart/plib_usart1.h</itemPath>
+            <logicalFolder name="uart" displayName="uart" projectFiles="true">
+              <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/uart/plib_uart_common.h</itemPath>
+              <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/uart/plib_uart1.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f8" displayName="xdmac" projectFiles="true">
               <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/xdmac/plib_xdmac_common.h</itemPath>
@@ -98,10 +103,31 @@
           <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/configuration.h</itemPath>
           <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/interrupts.h</itemPath>
           <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/device_vectors.h</itemPath>
+          <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/sys_tasks.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f2" displayName="packs" projectFiles="true">
-        <logicalFolder name="f1" displayName="PIC32CZ2051CA70144_DFP" projectFiles="true">
+        <logicalFolder name="f2" displayName="CMSIS" projectFiles="true">
+          <logicalFolder name="f1" displayName="CMSIS" projectFiles="true">
+            <logicalFolder name="f1" displayName="Core" projectFiles="true">
+              <logicalFolder name="f1" displayName="Include" projectFiles="true">
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_version.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_compiler.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_iccarm.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_gcc.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_armcc.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_armclang.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_armclang_ltm.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/core_cm7.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/mpu_armv7.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cachel1_armv7.h</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+          </logicalFolder>
+        </logicalFolder>
+        <logicalFolder name="f1"
+                       displayName="PIC32CZ2051CA70144_DFP"
+                       projectFiles="true">
           <logicalFolder name="f1" displayName="component" projectFiles="true">
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/acc.h</itemPath>
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/aes.h</itemPath>
@@ -139,6 +165,7 @@
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/wdt.h</itemPath>
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/xdmac.h</itemPath>
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/fuses.h</itemPath>
+            <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/component/mlb.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="instance" projectFiles="true">
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/acc.h</itemPath>
@@ -197,29 +224,12 @@
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/wdt.h</itemPath>
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/xdmac.h</itemPath>
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/fuses.h</itemPath>
+            <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/instance/mlb.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f3" displayName="pio" projectFiles="true">
             <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/pio/pic32cz2051ca70144.h</itemPath>
           </logicalFolder>
           <itemPath>../src/packs/PIC32CZ2051CA70144_DFP/pic32cz2051ca70144.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f2" displayName="CMSIS" projectFiles="true">
-          <logicalFolder name="f1" displayName="CMSIS" projectFiles="true">
-            <logicalFolder name="f1" displayName="Core" projectFiles="true">
-              <logicalFolder name="f1" displayName="Include" projectFiles="true">
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_version.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_compiler.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_iccarm.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_gcc.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_armcc.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_armclang.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_armclang_ltm.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/core_cm7.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/mpu_armv7.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cachel1_armv7.h</itemPath>
-              </logicalFolder>
-            </logicalFolder>
-          </logicalFolder>
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/app.h</itemPath>
@@ -227,22 +237,6 @@
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="pic32cz_ca70_curiosity_ultra.mhc" projectFiles="true">
-
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/dfp.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/drv_sdmmc.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/efc.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/GraphSettings.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/HarmonyCore.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/hsmci.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/project.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/settings.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/stdio.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/sys_fs.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/sys_time.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/tc0.yml</itemPath>
-        <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/pic32cz_ca70_curiosity_ultra.mhc/usart1.yml</itemPath>
-      </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/harmony-manifest-success.yml</itemPath>
       <itemPath>sdmmc_fat_throughput_pic32cz_ca70_curiosity_ultra.mc3</itemPath>
@@ -252,7 +246,9 @@
                    displayName="Linker Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="config" projectFiles="true">
-        <logicalFolder name="f1" displayName="pic32cz_ca70_curiosity_ultra" projectFiles="true">
+        <logicalFolder name="f1"
+                       displayName="pic32cz_ca70_curiosity_ultra"
+                       projectFiles="true">
           <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/PIC32CZ2051CA70144.ld</itemPath>
         </logicalFolder>
       </logicalFolder>
@@ -261,7 +257,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="config" projectFiles="true">
-        <logicalFolder name="f1" displayName="pic32cz_ca70_curiosity_ultra" projectFiles="true">
+        <logicalFolder name="f1"
+                       displayName="pic32cz_ca70_curiosity_ultra"
+                       projectFiles="true">
           <logicalFolder name="f1" displayName="bsp" projectFiles="true">
             <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/bsp/bsp.c</itemPath>
           </logicalFolder>
@@ -290,8 +288,8 @@
             <logicalFolder name="f6" displayName="tc" projectFiles="true">
               <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/tc/plib_tc0.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="usart" projectFiles="true">
-              <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/usart/plib_usart1.c</itemPath>
+            <logicalFolder name="uart" displayName="uart" projectFiles="true">
+              <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/uart/plib_uart1.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f8" displayName="xdmac" projectFiles="true">
               <itemPath>../src/config/pic32cz_ca70_curiosity_ultra/peripheral/xdmac/plib_xdmac.c</itemPath>
@@ -348,9 +346,9 @@
         <targetDevice>PIC32CZ2051CA70144</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>EdbgTool</platformTool>
+        <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.10</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -411,13 +409,15 @@
       <C32>
         <property key="additional-warnings" value="true"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe"
+                  value="-Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Waggregate-return -Wstrict-prototypes -Wmissing-format-attribute -Wno-deprecated-declarations -Wredundant-decls -Wnested-externs -Winline -Wlong-long -Wunreachable-code -Wmissing-noreturn -Werror-implicit-function-declaration -Wfloat-equal -Wpacked"/>
         <property key="enable-app-io" value="false"/>
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/pic32cz_ca70_curiosity_ultra;../src/config/pic32cz_ca70_curiosity_ultra/system/fs/fat_fs/file_system;../src/config/pic32cz_ca70_curiosity_ultra/system/fs/fat_fs/hardware_access;../src/packs/PIC32CZ2051CA70144_DFP;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include"/>
+                  value="../src;../src/config/pic32cz_ca70_curiosity_ultra;../src/config/pic32cz_ca70_curiosity_ultra/system/fs/fat_fs/file_system;../src/config/pic32cz_ca70_curiosity_ultra/system/fs/fat_fs/hardware_access;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CZ2051CA70144_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -468,6 +468,7 @@
         <property key="additional-options-use-response-files" value="false"/>
         <property key="additional-options-write-sla" value="false"/>
         <property key="allocate-dinit" value="false"/>
+        <property key="appendMe" value="-u _printf_float"/>
         <property key="code-dinit" value="false"/>
         <property key="ebase-addr" value=""/>
         <property key="enable-check-sections" value="false"/>
@@ -508,6 +509,7 @@
       <C32CPP>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="check-new" value="false"/>
         <property key="eh-specs" value="true"/>
         <property key="enable-app-io" value="false"/>
@@ -517,7 +519,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/pic32cz_ca70_curiosity_ultra;../src/config/pic32cz_ca70_curiosity_ultra/system/fs/fat_fs/file_system;../src/config/pic32cz_ca70_curiosity_ultra/system/fs/fat_fs/hardware_access;../src/packs/PIC32CZ2051CA70144_DFP;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include"/>
+                  value="../src;../src/config/pic32cz_ca70_curiosity_ultra;../src/config/pic32cz_ca70_curiosity_ultra/system/fs/fat_fs/file_system;../src/config/pic32cz_ca70_curiosity_ultra/system/fs/fat_fs/hardware_access;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CZ2051CA70144_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -536,6 +538,7 @@
         <property key="use-indirect-calls" value="false"/>
       </C32CPP>
       <C32Global>
+        <property key="appendMe" value=""/>
         <property key="common-include-directories" value=""/>
         <property key="gp-relative-option" value=""/>
         <property key="legacy-libc" value="false"/>
