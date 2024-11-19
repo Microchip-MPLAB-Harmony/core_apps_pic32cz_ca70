@@ -1,23 +1,21 @@
 /*******************************************************************************
-  Interrupt System Service Mapping File
+  UART1 PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    sys_int_mapping.h
+    plib_uart1.h
 
   Summary:
-    Interrupt System Service mapping file.
+    UART1 PLIB Header File
 
   Description:
-    This header file contains the mapping of the APIs defined in the API header
-    to either the function implementations or macro implementation or the
-    specific variant implementation.
+    None
+
 *******************************************************************************/
 
-//DOM-IGNORE-BEGIN
-/******************************************************************************
+/*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
@@ -39,26 +37,63 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
-//DOM-IGNORE-END
 
-#ifndef SYS_INT_MAPPING_H
-#define SYS_INT_MAPPING_H
+#ifndef PLIB_UART1_H
+#define PLIB_UART1_H
+
+#include "plib_uart_common.h"
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
+// DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Interrupt System Service Mapping
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-/* MISRA C-2012 Rule 5.8 deviated:6 Deviation record ID -  H3_MISRAC_2012_R_5_8_DR_1 */
+#define UART1_FrequencyGet()    (uint32_t)(150000000UL)
 
-#define SYS_INT_IsEnabled()                 ( __get_PRIMASK() == 0 )
-#define SYS_INT_SourceEnable( source )      NVIC_EnableIRQ( source )
-#define SYS_INT_SourceIsEnabled( source )   NVIC_GetEnableIRQ( source )
-#define SYS_INT_SourceStatusGet( source )   NVIC_GetPendingIRQ( source )
-#define SYS_INT_SourceStatusSet( source )   NVIC_SetPendingIRQ( source )
-#define SYS_INT_SourceStatusClear( source ) NVIC_ClearPendingIRQ( source )
+/****************************** UART1 API *********************************/
 
-/* MISRAC 2012 deviation block end */
+void UART1_Initialize( void );
 
-#endif // SYS_INT_MAPPING_H
+UART_ERROR UART1_ErrorGet( void );
+
+bool UART1_SerialSetup( UART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
+
+bool UART1_Write( void *buffer, const size_t size );
+
+bool UART1_Read( void *buffer, const size_t size );
+
+bool UART1_WriteIsBusy( void );
+
+bool UART1_ReadIsBusy( void );
+
+size_t UART1_WriteCountGet( void );
+
+size_t UART1_ReadCountGet( void );
+
+bool UART1_ReadAbort(void);
+
+void UART1_WriteCallbackRegister( UART_CALLBACK callback, uintptr_t context );
+
+void UART1_ReadCallbackRegister( UART_CALLBACK callback, uintptr_t context );
+
+
+bool UART1_TransmitComplete( void );
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    }
+
+#endif
+
+// DOM-IGNORE-END
+#endif // PLIB_UART1_H
