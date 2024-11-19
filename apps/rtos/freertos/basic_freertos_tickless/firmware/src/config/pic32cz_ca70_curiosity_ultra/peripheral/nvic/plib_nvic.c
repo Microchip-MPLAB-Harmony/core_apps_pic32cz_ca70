@@ -69,6 +69,9 @@ void NVIC_Initialize( void )
     /* Enable Bus fault */
     SCB->SHCSR |= (SCB_SHCSR_BUSFAULTENA_Msk);
 
+    /* Enable memory management fault */
+    SCB->SHCSR |= (SCB_SHCSR_MEMFAULTENA_Msk);
+
 }
 
 void NVIC_INT_Enable( void )
@@ -99,4 +102,27 @@ void NVIC_INT_Restore( bool state )
         __disable_irq();
         __DMB();
     }
+}
+
+bool NVIC_INT_SourceDisable( IRQn_Type source )
+{
+    bool processorStatus;
+    bool intSrcStatus;
+
+    processorStatus = NVIC_INT_Disable();
+    intSrcStatus = (NVIC_GetEnableIRQ(source) != 0U);
+    NVIC_DisableIRQ( source );
+    NVIC_INT_Restore( processorStatus );
+
+    /* return the source status */
+    return intSrcStatus;
+}
+
+void NVIC_INT_SourceRestore( IRQn_Type source, bool status )
+{
+    if( status ) {
+       NVIC_EnableIRQ( source );
+    }
+
+    return;
 }
