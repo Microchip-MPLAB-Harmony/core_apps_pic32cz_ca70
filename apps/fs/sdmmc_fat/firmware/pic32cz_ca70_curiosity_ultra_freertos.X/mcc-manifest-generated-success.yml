@@ -2,7 +2,11 @@
 
 manifest_file_version: 1.0.0
 project: N/A
+<<<<<<< HEAD:apps/fs/sdmmc_fat/firmware/pic32cz_ca70_curiosity_ultra_freertos.X/mcc-manifest-generated-success.yml
 creation_date: 2024-11-21T08:17:46.383+05:30[Asia/Calcutta]
+=======
+creation_date: 2024-11-19T10:13:11.564+05:30[Asia/Calcutta]
+>>>>>>> 0d82868 ([SYS_] Regenerated demo for system__time__sys_time_multiclient__firmware__pic32cz_ca70_curiosity_ultra.X):apps/system/console_debug/sys_console_debug_usb_read_write/firmware/pic32cz_ca70_curiosity_ultra_freertos.X/mcc-manifest-generated-success.yml
 operating_system: Windows 10
 mcc_mode: Headless
 mcc_mode_version: 5.5.1
@@ -14,6 +18,7 @@ content_manager_version: Unknown
 is_mcc_offline: false
 is_using_prerelease_versions: false
 mcc_content_registries: https://registry.npmjs.org/
+<<<<<<< HEAD:apps/fs/sdmmc_fat/firmware/pic32cz_ca70_curiosity_ultra_freertos.X/mcc-manifest-generated-success.yml
 device_library: {library_class: com.microchip.mcc.harmony.Harmony3Library, name: Harmony
     V3, version: 1.5.3}
 packs: null
@@ -25,3 +30,8 @@ modules:
 - {name: FreeRTOS-Kernel, type: HARMONY, version: V11.1.0}
 - {name: littlefs, type: HARMONY, version: v2.9.3}
 - {name: bsp, type: HARMONY, version: v3.21.0-1-g9332d6c}
+=======
+device_library: {library_class: '', name: Unknown due to exceptions, version: ''}
+packs: null
+modules: []
+>>>>>>> 0d82868 ([SYS_] Regenerated demo for system__time__sys_time_multiclient__firmware__pic32cz_ca70_curiosity_ultra.X):apps/system/console_debug/sys_console_debug_usb_read_write/firmware/pic32cz_ca70_curiosity_ultra_freertos.X/mcc-manifest-generated-success.yml
