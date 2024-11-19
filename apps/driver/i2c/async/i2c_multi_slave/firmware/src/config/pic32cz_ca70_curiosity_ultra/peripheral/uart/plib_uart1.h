@@ -1,14 +1,14 @@
 /*******************************************************************************
-  NVIC PLIB Implementation
+  UART1 PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_nvic.c
+    plib_uart1.h
 
   Summary:
-    NVIC PLIB Source File
+    UART1 PLIB Header File
 
   Description:
     None
@@ -38,96 +38,71 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#include "device.h"
-#include "plib_nvic.h"
+#ifndef PLIB_UART1_H
+#define PLIB_UART1_H
 
+#include "plib_uart_common.h"
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
+// DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: NVIC Implementation
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-void NVIC_Initialize( void )
-{
-    /* Priority 0 to 7 and no sub-priority. 0 is the highest priority */
-    NVIC_SetPriorityGrouping( 0x00 );
+#define UART1_FrequencyGet()    (uint32_t)(150000000UL)
 
-    /* Enable NVIC Controller */
-    __DMB();
-    __enable_irq();
+/****************************** UART1 API *********************************/
 
-    /* Enable the interrupt sources and configure the priorities as configured
-     * from within the "Interrupt Manager" of MHC. */
-    NVIC_SetPriority(UART1_IRQn, 6);
-    NVIC_EnableIRQ(UART1_IRQn);
-    NVIC_SetPriority(TWIHS0_IRQn, 7);
-    NVIC_EnableIRQ(TWIHS0_IRQn);
-    NVIC_SetPriority(TC0_CH0_IRQn, 7);
-    NVIC_EnableIRQ(TC0_CH0_IRQn);
+void UART1_Initialize( void );
 
-    /* Enable Usage fault */
-    SCB->SHCSR |= (SCB_SHCSR_USGFAULTENA_Msk);
-    /* Trap divide by zero */
-    SCB->CCR   |= SCB_CCR_DIV_0_TRP_Msk;
+bool UART1_SerialSetup( UART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
 
-    /* Enable Bus fault */
-    SCB->SHCSR |= (SCB_SHCSR_BUSFAULTENA_Msk);
+UART_ERROR UART1_ErrorGet( void );
 
-    /* Enable memory management fault */
-    SCB->SHCSR |= (SCB_SHCSR_MEMFAULTENA_Msk);
+size_t UART1_Write(uint8_t* pWrBuffer, const size_t size );
 
-}
+size_t UART1_WriteCountGet(void);
 
-void NVIC_INT_Enable( void )
-{
-    __DMB();
-    __enable_irq();
-}
+size_t UART1_WriteFreeBufferCountGet(void);
 
-bool NVIC_INT_Disable( void )
-{
-    bool processorStatus = (__get_PRIMASK() == 0U);
+size_t UART1_WriteBufferSizeGet(void);
 
-    __disable_irq();
-    __DMB();
+bool UART1_TransmitComplete(void);
 
-    return processorStatus;
-}
+bool UART1_WriteNotificationEnable(bool isEnabled, bool isPersistent);
 
-void NVIC_INT_Restore( bool state )
-{
-    if( state == true )
-    {
-        __DMB();
-        __enable_irq();
-    }
-    else
-    {
-        __disable_irq();
-        __DMB();
-    }
-}
+void UART1_WriteThresholdSet(uint32_t nBytesThreshold);
 
-bool NVIC_INT_SourceDisable( IRQn_Type source )
-{
-    bool processorStatus;
-    bool intSrcStatus;
+void UART1_WriteCallbackRegister( UART_RING_BUFFER_CALLBACK callback, uintptr_t context);
 
-    processorStatus = NVIC_INT_Disable();
-    intSrcStatus = (NVIC_GetEnableIRQ(source) != 0U);
-    NVIC_DisableIRQ( source );
-    NVIC_INT_Restore( processorStatus );
+size_t UART1_Read(uint8_t* pRdBuffer, const size_t size);
 
-    /* return the source status */
-    return intSrcStatus;
-}
+size_t UART1_ReadCountGet(void);
 
-void NVIC_INT_SourceRestore( IRQn_Type source, bool status )
-{
-    if( status ) {
-       NVIC_EnableIRQ( source );
+size_t UART1_ReadFreeBufferCountGet(void);
+
+size_t UART1_ReadBufferSizeGet(void);
+
+bool UART1_ReadNotificationEnable(bool isEnabled, bool isPersistent);
+
+void UART1_ReadThresholdSet(uint32_t nBytesThreshold);
+
+void UART1_ReadCallbackRegister( UART_RING_BUFFER_CALLBACK callback, uintptr_t context);
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
     }
 
-    return;
-}
+#endif
+
+// DOM-IGNORE-END
+#endif // PLIB_UART1_H
