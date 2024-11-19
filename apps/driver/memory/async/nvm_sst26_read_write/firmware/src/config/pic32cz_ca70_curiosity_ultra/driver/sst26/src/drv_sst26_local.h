@@ -39,8 +39,8 @@
 *******************************************************************************/
 //DOM-IGNORE-END
 
-#ifndef _DRV_SST26_LOCAL_H
-#define _DRV_SST26_LOCAL_H
+#ifndef DRV_SST26_LOCAL_H
+#define DRV_SST26_LOCAL_H
 
 // *****************************************************************************
 // *****************************************************************************
@@ -136,6 +136,9 @@ typedef enum
 
     /* Request is read operation. */
     DRV_SST26_OPERATION_TYPE_READ,
+	
+    /* Request is read operation status. */
+    DRV_SST26_OPERATION_TYPE_READ_STATUS,
 
     /* Request is write operation. */
     DRV_SST26_OPERATION_TYPE_WRITE,
@@ -152,6 +155,9 @@ typedef struct
 {
     /* Flag to indicate in use  */
     bool inUse;
+	
+	/* Flag to indication read operation status*/
+	volatile bool internal_write_complete_flag;
 
     /* Flag to indicate status of transfer */
     volatile bool isTransferDone;
@@ -177,7 +183,7 @@ typedef struct
 
 
 
-#endif //#ifndef _DRV_SST26_LOCAL_H
+#endif //#ifndef DRV_SST26_LOCAL_H
 
 /*******************************************************************************
  End of File
