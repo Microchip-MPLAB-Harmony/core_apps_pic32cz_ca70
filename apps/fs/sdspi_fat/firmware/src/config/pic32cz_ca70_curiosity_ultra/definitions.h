@@ -48,7 +48,6 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "bsp/bsp.h"
 #include "system/fs/sys_fs.h"
 #include "system/fs/sys_fs_media_manager.h"
 #include "system/fs/sys_fs_fat_interface.h"
@@ -62,6 +61,7 @@
 #include "peripheral/spi/spi_master/plib_spi0_master.h"
 #include "peripheral/efc/plib_efc.h"
 #include "peripheral/tc/plib_tc0.h"
+#include "bsp/bsp.h"
 #include "driver/sdspi/drv_sdspi.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
@@ -82,8 +82,14 @@ extern "C" {
 #endif
 // DOM-IGNORE-END
 
+/* Device Information */
+#define DEVICE_NAME          "PIC32CZ2051CA70144"
+#define DEVICE_ARCH          "CORTEX-M7"
+#define DEVICE_FAMILY        "PIC32C"
+#define DEVICE_SERIES        "PIC32CZCA70"
+
 /* CPU clock frequency */
-#define CPU_CLOCK_FREQUENCY 300000000
+#define CPU_CLOCK_FREQUENCY 300000000U
 
 // *****************************************************************************
 // *****************************************************************************
