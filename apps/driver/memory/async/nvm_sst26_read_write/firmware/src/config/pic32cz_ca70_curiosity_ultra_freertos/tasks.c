@@ -52,6 +52,7 @@
 
 #include "configuration.h"
 #include "definitions.h"
+#include "sys_tasks.h"
 
 
 // *****************************************************************************
@@ -59,55 +60,64 @@
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
-void _DRV_MEMORY_1_Tasks(  void *pvParameters  )
+static void lDRV_MEMORY_1_Tasks(  void *pvParameters  )
 {
-    while(1)
+    while(true)
     {
         DRV_MEMORY_Tasks(sysObj.drvMemory1);
         vTaskDelay(DRV_MEMORY_RTOS_DELAY_IDX1 / portTICK_PERIOD_MS);
     }
 }
 
-void _DRV_MEMORY_0_Tasks(  void *pvParameters  )
+static void lDRV_MEMORY_0_Tasks(  void *pvParameters  )
 {
-    while(1)
+    while(true)
     {
         DRV_MEMORY_Tasks(sysObj.drvMemory0);
         vTaskDelay(DRV_MEMORY_RTOS_DELAY_IDX0 / portTICK_PERIOD_MS);
     }
 }
 
+
 /* Handle for the APP_SST26_Tasks. */
 TaskHandle_t xAPP_SST26_Tasks;
 
-void _APP_SST26_Tasks(  void *pvParameters  )
+
+
+static void lAPP_SST26_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_SST26_Tasks();
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(10U / portTICK_PERIOD_MS);
     }
 }
+
 /* Handle for the APP_NVM_Tasks. */
 TaskHandle_t xAPP_NVM_Tasks;
 
-void _APP_NVM_Tasks(  void *pvParameters  )
+
+
+static void lAPP_NVM_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_NVM_Tasks();
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(10U / portTICK_PERIOD_MS);
     }
 }
+
 /* Handle for the APP_MONITOR_Tasks. */
 TaskHandle_t xAPP_MONITOR_Tasks;
 
-void _APP_MONITOR_Tasks(  void *pvParameters  )
+
+
+static void lAPP_MONITOR_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_MONITOR_Tasks();
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(10U / portTICK_PERIOD_MS);
     }
 }
 
@@ -133,19 +143,19 @@ void SYS_Tasks ( void )
     
 
     /* Maintain Device Drivers */
-        xTaskCreate( _DRV_MEMORY_1_Tasks,
+        (void)xTaskCreate( lDRV_MEMORY_1_Tasks,
         "DRV_MEM_1_TASKS",
         DRV_MEMORY_STACK_SIZE_IDX1,
         (void*)NULL,
-        DRV_MEMORY_PRIORITY_IDX1,
+        DRV_MEMORY_PRIORITY_IDX1 ,
         (TaskHandle_t*)NULL
     );
 
-    xTaskCreate( _DRV_MEMORY_0_Tasks,
+    (void)xTaskCreate( lDRV_MEMORY_0_Tasks,
         "DRV_MEM_0_TASKS",
         DRV_MEMORY_STACK_SIZE_IDX0,
         (void*)NULL,
-        DRV_MEMORY_PRIORITY_IDX0,
+        DRV_MEMORY_PRIORITY_IDX0 ,
         (TaskHandle_t*)NULL
     );
 
@@ -155,30 +165,33 @@ void SYS_Tasks ( void )
     
 
     /* Maintain the application's state machine. */
-        /* Create OS Thread for APP_SST26_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_SST26_Tasks,
-                "APP_SST26_Tasks",
-                1024,
-                NULL,
-                2,
-                &xAPP_SST26_Tasks);
+    
+    /* Create OS Thread for APP_SST26_Tasks. */
+    (void) xTaskCreate(
+           (TaskFunction_t) lAPP_SST26_Tasks,
+           "APP_SST26_Tasks",
+           1024,
+           NULL,
+           2U ,
+           &xAPP_SST26_Tasks);
 
     /* Create OS Thread for APP_NVM_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_NVM_Tasks,
-                "APP_NVM_Tasks",
-                1024,
-                NULL,
-                2,
-                &xAPP_NVM_Tasks);
+    (void) xTaskCreate(
+           (TaskFunction_t) lAPP_NVM_Tasks,
+           "APP_NVM_Tasks",
+           1024,
+           NULL,
+           2U ,
+           &xAPP_NVM_Tasks);
 
     /* Create OS Thread for APP_MONITOR_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_MONITOR_Tasks,
-                "APP_MONITOR_Tasks",
-                1024,
-                NULL,
-                1,
-                &xAPP_MONITOR_Tasks);
-
+    (void) xTaskCreate(
+           (TaskFunction_t) lAPP_MONITOR_Tasks,
+           "APP_MONITOR_Tasks",
+           1024,
+           NULL,
+           1U ,
+           &xAPP_MONITOR_Tasks);
 
 
 
