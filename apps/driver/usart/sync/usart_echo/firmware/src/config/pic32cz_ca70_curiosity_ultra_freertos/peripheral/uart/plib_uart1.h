@@ -1,14 +1,14 @@
 /*******************************************************************************
-  NVIC PLIB Implementation
+  UART1 PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_nvic.c
+    plib_uart1.h
 
   Summary:
-    NVIC PLIB Source File
+    UART1 PLIB Header File
 
   Description:
     None
@@ -38,93 +38,62 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#include "device.h"
-#include "plib_nvic.h"
+#ifndef PLIB_UART1_H
+#define PLIB_UART1_H
 
+#include "plib_uart_common.h"
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
+// DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: NVIC Implementation
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-void NVIC_Initialize( void )
-{
-    /* Priority 0 to 7 and no sub-priority. 0 is the highest priority */
-    NVIC_SetPriorityGrouping( 0x00 );
+#define UART1_FrequencyGet()    (uint32_t)(150000000UL)
 
-    /* Enable NVIC Controller */
-    __DMB();
-    __enable_irq();
+/****************************** UART1 API *********************************/
 
-    /* Enable the interrupt sources and configure the priorities as configured
-     * from within the "Interrupt Manager" of MHC. */
-    NVIC_SetPriority(SysTick_IRQn, 7);
-    NVIC_SetPriority(UART1_IRQn, 7);
-    NVIC_EnableIRQ(UART1_IRQn);
+void UART1_Initialize( void );
 
-    /* Enable Usage fault */
-    SCB->SHCSR |= (SCB_SHCSR_USGFAULTENA_Msk);
-    /* Trap divide by zero */
-    SCB->CCR   |= SCB_CCR_DIV_0_TRP_Msk;
+UART_ERROR UART1_ErrorGet( void );
 
-    /* Enable Bus fault */
-    SCB->SHCSR |= (SCB_SHCSR_BUSFAULTENA_Msk);
+bool UART1_SerialSetup( UART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
 
-    /* Enable memory management fault */
-    SCB->SHCSR |= (SCB_SHCSR_MEMFAULTENA_Msk);
+bool UART1_Write( void *buffer, const size_t size );
 
-}
+bool UART1_Read( void *buffer, const size_t size );
 
-void NVIC_INT_Enable( void )
-{
-    __DMB();
-    __enable_irq();
-}
+bool UART1_WriteIsBusy( void );
 
-bool NVIC_INT_Disable( void )
-{
-    bool processorStatus = (__get_PRIMASK() == 0U);
+bool UART1_ReadIsBusy( void );
 
-    __disable_irq();
-    __DMB();
+size_t UART1_WriteCountGet( void );
 
-    return processorStatus;
-}
+size_t UART1_ReadCountGet( void );
 
-void NVIC_INT_Restore( bool state )
-{
-    if( state == true )
-    {
-        __DMB();
-        __enable_irq();
-    }
-    else
-    {
-        __disable_irq();
-        __DMB();
-    }
-}
+bool UART1_ReadAbort(void);
 
-bool NVIC_INT_SourceDisable( IRQn_Type source )
-{
-    bool processorStatus;
-    bool intSrcStatus;
+void UART1_WriteCallbackRegister( UART_CALLBACK callback, uintptr_t context );
 
-    processorStatus = NVIC_INT_Disable();
-    intSrcStatus = (NVIC_GetEnableIRQ(source) != 0U);
-    NVIC_DisableIRQ( source );
-    NVIC_INT_Restore( processorStatus );
+void UART1_ReadCallbackRegister( UART_CALLBACK callback, uintptr_t context );
 
-    /* return the source status */
-    return intSrcStatus;
-}
 
-void NVIC_INT_SourceRestore( IRQn_Type source, bool status )
-{
-    if( status ) {
-       NVIC_EnableIRQ( source );
+bool UART1_TransmitComplete( void );
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
     }
 
-    return;
-}
+#endif
+
+// DOM-IGNORE-END
+#endif // PLIB_UART1_H
