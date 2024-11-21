@@ -1,14 +1,14 @@
 /*******************************************************************************
-  XDMAC PLIB
+  UART1 PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_xdmac.h
+    plib_uart1.h
 
   Summary:
-    XDMAC PLIB Header File
+    UART1 PLIB Header File
 
   Description:
     None
@@ -38,12 +38,10 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#ifndef PLIB_XDMAC_H
-#define PLIB_XDMAC_H
+#ifndef PLIB_UART1_H
+#define PLIB_UART1_H
 
-#include <stddef.h>
-#include <stdbool.h>
-#include "plib_xdmac_common.h"
+#include "plib_uart_common.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -59,37 +57,36 @@
 // *****************************************************************************
 // *****************************************************************************
 
-/****************************** XDMAC Data Types ******************************/
-/* XDMAC Channels */
-typedef enum {
-    XDMAC_CHANNEL_0 = 0,
-    XDMAC_CHANNEL_1 = 1,
-} XDMAC_CHANNEL;
+#define UART1_FrequencyGet()    (uint32_t)(150000000UL)
+
+/****************************** UART1 API *********************************/
+
+void UART1_Initialize( void );
+
+UART_ERROR UART1_ErrorGet( void );
+
+bool UART1_SerialSetup( UART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
+
+bool UART1_Write( void *buffer, const size_t size );
+
+bool UART1_Read( void *buffer, const size_t size );
+
+bool UART1_WriteIsBusy( void );
+
+bool UART1_ReadIsBusy( void );
+
+size_t UART1_WriteCountGet( void );
+
+size_t UART1_ReadCountGet( void );
+
+bool UART1_ReadAbort(void);
+
+void UART1_WriteCallbackRegister( UART_CALLBACK callback, uintptr_t context );
+
+void UART1_ReadCallbackRegister( UART_CALLBACK callback, uintptr_t context );
 
 
-/****************************** XDMAC API *********************************/
-
-void XDMAC_Initialize( void );
-
-void XDMAC_ChannelCallbackRegister( XDMAC_CHANNEL channel, const XDMAC_CHANNEL_CALLBACK eventHandler, const uintptr_t contextHandle );
-
-bool XDMAC_ChannelTransfer( XDMAC_CHANNEL channel, const void *srcAddr, const void *destAddr, size_t blockSize );
-
-bool XDMAC_ChannelIsBusy (XDMAC_CHANNEL channel);
-
-void XDMAC_ChannelDisable (XDMAC_CHANNEL channel);
-
-XDMAC_CHANNEL_CONFIG XDMAC_ChannelSettingsGet (XDMAC_CHANNEL channel);
-
-bool XDMAC_ChannelSettingsSet (XDMAC_CHANNEL channel, XDMAC_CHANNEL_CONFIG setting);
-
-void XDMAC_ChannelBlockLengthSet (XDMAC_CHANNEL channel, uint16_t length);
-
-void XDMAC_ChannelSuspend (XDMAC_CHANNEL channel);
-
-void XDMAC_ChannelResume (XDMAC_CHANNEL channel);
-
-XDMAC_TRANSFER_EVENT XDMAC_ChannelTransferStatusGet(XDMAC_CHANNEL channel);
+bool UART1_TransmitComplete( void );
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -97,5 +94,6 @@ XDMAC_TRANSFER_EVENT XDMAC_ChannelTransferStatusGet(XDMAC_CHANNEL channel);
     }
 
 #endif
+
 // DOM-IGNORE-END
-#endif // PLIB_XDMAC_H
+#endif // PLIB_UART1_H

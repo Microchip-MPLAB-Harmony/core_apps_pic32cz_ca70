@@ -1,22 +1,23 @@
 /*******************************************************************************
-  USART1 PLIB
-
-  Company:
-    Microchip Technology Inc.
+ System Tasks Header File
 
   File Name:
-    plib_usart1.h
+    sys_tasks.h
 
   Summary:
-    USART1 PLIB Header File
+    This file contains declarations for task handles.
 
   Description:
+    Task handles declared in this header file can be used by the application
+    to control the behavior of the tasks.
+
+  Remarks:
     None
+ *******************************************************************************/
 
-*******************************************************************************/
-
+// DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -36,64 +37,33 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
-*******************************************************************************/
-
-#ifndef PLIB_USART1_H
-#define PLIB_USART1_H
-
-#include "plib_usart_common.h"
-
-// DOM-IGNORE-BEGIN
-#ifdef __cplusplus  // Provide C++ Compatibility
-
-    extern "C" {
-
-#endif
+ *******************************************************************************/
 // DOM-IGNORE-END
 
+#ifndef SYS_TASKS_H
+#define SYS_TASKS_H
+
 // *****************************************************************************
 // *****************************************************************************
-// Section: Interface
+// Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
 
-#define USART1_FrequencyGet()    (uint32_t)(150000000UL)
+#include "configuration.h"
+#include "definitions.h"
 
-/****************************** USART1 API *********************************/
+// *****************************************************************************
+// *****************************************************************************
+// Section: RTOS "Tasks" Handles
+// *****************************************************************************
+// *****************************************************************************
+/* Declaration of  APP_USART_USB_CLICK_BOARD_Tasks task handle */
+extern TaskHandle_t xAPP_USART_USB_CLICK_BOARD_Tasks;
 
-void USART1_Initialize( void );
-
-USART_ERROR USART1_ErrorGet( void );
-
-bool USART1_SerialSetup( USART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
-
-bool USART1_Write( void *buffer, const size_t size );
-
-bool USART1_Read( void *buffer, const size_t size );
-
-bool USART1_WriteIsBusy( void );
-
-bool USART1_ReadIsBusy( void );
-
-size_t USART1_WriteCountGet( void );
-
-size_t USART1_ReadCountGet( void );
-
-bool USART1_ReadAbort(void);
-
-void USART1_WriteCallbackRegister( USART_CALLBACK callback, uintptr_t context );
-
-void USART1_ReadCallbackRegister( USART_CALLBACK callback, uintptr_t context );
+/* Declaration of  APP_USART_USB_DEBUG_PORT_Tasks task handle */
+extern TaskHandle_t xAPP_USART_USB_DEBUG_PORT_Tasks;
 
 
-bool USART1_TransmitComplete( void );
 
-// DOM-IGNORE-BEGIN
-#ifdef __cplusplus  // Provide C++ Compatibility
 
-    }
-
-#endif
-
-// DOM-IGNORE-END
-#endif // PLIB_USART1_H
+#endif //SYS_TASKS_H

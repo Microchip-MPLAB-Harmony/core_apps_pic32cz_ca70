@@ -52,6 +52,7 @@
 
 #include "configuration.h"
 #include "definitions.h"
+#include "sys_tasks.h"
 
 
 // *****************************************************************************
@@ -59,22 +60,28 @@
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
+
 /* Handle for the APP_USART_USB_CLICK_BOARD_Tasks. */
 TaskHandle_t xAPP_USART_USB_CLICK_BOARD_Tasks;
 
-void _APP_USART_USB_CLICK_BOARD_Tasks(  void *pvParameters  )
+
+
+static void lAPP_USART_USB_CLICK_BOARD_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_USART_USB_CLICK_BOARD_Tasks();
     }
 }
+
 /* Handle for the APP_USART_USB_DEBUG_PORT_Tasks. */
 TaskHandle_t xAPP_USART_USB_DEBUG_PORT_Tasks;
 
-void _APP_USART_USB_DEBUG_PORT_Tasks(  void *pvParameters  )
+
+
+static void lAPP_USART_USB_DEBUG_PORT_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_USART_USB_DEBUG_PORT_Tasks();
     }
@@ -108,22 +115,24 @@ void SYS_Tasks ( void )
     
 
     /* Maintain the application's state machine. */
-        /* Create OS Thread for APP_USART_USB_CLICK_BOARD_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_USART_USB_CLICK_BOARD_Tasks,
-                "APP_USART_USB_CLICK_BOARD_Tasks",
-                1024,
-                NULL,
-                1,
-                &xAPP_USART_USB_CLICK_BOARD_Tasks);
+    
+    /* Create OS Thread for APP_USART_USB_CLICK_BOARD_Tasks. */
+    (void) xTaskCreate(
+           (TaskFunction_t) lAPP_USART_USB_CLICK_BOARD_Tasks,
+           "APP_USART_USB_CLICK_BOARD_Tasks",
+           1024,
+           NULL,
+           1U ,
+           &xAPP_USART_USB_CLICK_BOARD_Tasks);
 
     /* Create OS Thread for APP_USART_USB_DEBUG_PORT_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_USART_USB_DEBUG_PORT_Tasks,
-                "APP_USART_USB_DEBUG_PORT_Tasks",
-                1024,
-                NULL,
-                1,
-                &xAPP_USART_USB_DEBUG_PORT_Tasks);
-
+    (void) xTaskCreate(
+           (TaskFunction_t) lAPP_USART_USB_DEBUG_PORT_Tasks,
+           "APP_USART_USB_DEBUG_PORT_Tasks",
+           1024,
+           NULL,
+           1U ,
+           &xAPP_USART_USB_DEBUG_PORT_Tasks);
 
 
 
