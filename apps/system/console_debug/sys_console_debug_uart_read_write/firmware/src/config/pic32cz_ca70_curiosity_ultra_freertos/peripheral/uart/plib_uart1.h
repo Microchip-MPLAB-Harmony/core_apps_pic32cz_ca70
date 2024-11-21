@@ -1,14 +1,14 @@
 /*******************************************************************************
-  USART1 PLIB
+  UART1 PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_usart1.h
+    plib_uart1.h
 
   Summary:
-    USART1 PLIB Header File
+    UART1 PLIB Header File
 
   Description:
     None
@@ -38,10 +38,10 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#ifndef PLIB_USART1_H
-#define PLIB_USART1_H
+#ifndef PLIB_UART1_H
+#define PLIB_UART1_H
 
-#include "plib_usart_common.h"
+#include "plib_uart_common.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -57,45 +57,45 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define USART1_FrequencyGet()    (uint32_t)(150000000UL)
+#define UART1_FrequencyGet()    (uint32_t)(150000000UL)
 
-/****************************** USART1 API *********************************/
+/****************************** UART1 API *********************************/
 
-void USART1_Initialize( void );
+void UART1_Initialize( void );
 
-bool USART1_SerialSetup( USART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
+bool UART1_SerialSetup( UART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
 
-USART_ERROR USART1_ErrorGet( void );
+UART_ERROR UART1_ErrorGet( void );
 
-size_t USART1_Write(uint8_t* pWrBuffer, const size_t size );
+size_t UART1_Write(uint8_t* pWrBuffer, const size_t size );
 
-size_t USART1_WriteCountGet(void);
+size_t UART1_WriteCountGet(void);
 
-size_t USART1_WriteFreeBufferCountGet(void);
+size_t UART1_WriteFreeBufferCountGet(void);
 
-size_t USART1_WriteBufferSizeGet(void);
+size_t UART1_WriteBufferSizeGet(void);
 
-bool USART1_TransmitComplete(void);
+bool UART1_TransmitComplete(void);
 
-bool USART1_WriteNotificationEnable(bool isEnabled, bool isPersistent);
+bool UART1_WriteNotificationEnable(bool isEnabled, bool isPersistent);
 
-void USART1_WriteThresholdSet(uint32_t nBytesThreshold);
+void UART1_WriteThresholdSet(uint32_t nBytesThreshold);
 
-void USART1_WriteCallbackRegister( USART_RING_BUFFER_CALLBACK callback, uintptr_t context);
+void UART1_WriteCallbackRegister( UART_RING_BUFFER_CALLBACK callback, uintptr_t context);
 
-size_t USART1_Read(uint8_t* pRdBuffer, const size_t size);
+size_t UART1_Read(uint8_t* pRdBuffer, const size_t size);
 
-size_t USART1_ReadCountGet(void);
+size_t UART1_ReadCountGet(void);
 
-size_t USART1_ReadFreeBufferCountGet(void);
+size_t UART1_ReadFreeBufferCountGet(void);
 
-size_t USART1_ReadBufferSizeGet(void);
+size_t UART1_ReadBufferSizeGet(void);
 
-bool USART1_ReadNotificationEnable(bool isEnabled, bool isPersistent);
+bool UART1_ReadNotificationEnable(bool isEnabled, bool isPersistent);
 
-void USART1_ReadThresholdSet(uint32_t nBytesThreshold);
+void UART1_ReadThresholdSet(uint32_t nBytesThreshold);
 
-void USART1_ReadCallbackRegister( USART_RING_BUFFER_CALLBACK callback, uintptr_t context);
+void UART1_ReadCallbackRegister( UART_RING_BUFFER_CALLBACK callback, uintptr_t context);
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -105,4 +105,4 @@ void USART1_ReadCallbackRegister( USART_RING_BUFFER_CALLBACK callback, uintptr_t
 #endif
 
 // DOM-IGNORE-END
-#endif // PLIB_USART1_H
+#endif // PLIB_UART1_H
