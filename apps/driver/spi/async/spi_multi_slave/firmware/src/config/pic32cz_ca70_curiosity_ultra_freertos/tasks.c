@@ -52,6 +52,7 @@
 
 #include "configuration.h"
 #include "definitions.h"
+#include "sys_tasks.h"
 
 
 // *****************************************************************************
@@ -59,37 +60,46 @@
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
+
 /* Handle for the APP_EEPROM1_Tasks. */
 TaskHandle_t xAPP_EEPROM1_Tasks;
 
-void _APP_EEPROM1_Tasks(  void *pvParameters  )
+
+
+static void lAPP_EEPROM1_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_EEPROM1_Tasks();
-        vTaskDelay(50 / portTICK_PERIOD_MS);
+        vTaskDelay(50U / portTICK_PERIOD_MS);
     }
 }
+
 /* Handle for the APP_EEPROM2_Tasks. */
 TaskHandle_t xAPP_EEPROM2_Tasks;
 
-void _APP_EEPROM2_Tasks(  void *pvParameters  )
+
+
+static void lAPP_EEPROM2_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_EEPROM2_Tasks();
-        vTaskDelay(50 / portTICK_PERIOD_MS);
+        vTaskDelay(50U / portTICK_PERIOD_MS);
     }
 }
+
 /* Handle for the APP_MONITOR_Tasks. */
 TaskHandle_t xAPP_MONITOR_Tasks;
 
-void _APP_MONITOR_Tasks(  void *pvParameters  )
+
+
+static void lAPP_MONITOR_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_MONITOR_Tasks();
-        vTaskDelay(50 / portTICK_PERIOD_MS);
+        vTaskDelay(50U / portTICK_PERIOD_MS);
     }
 }
 
@@ -121,30 +131,33 @@ void SYS_Tasks ( void )
     
 
     /* Maintain the application's state machine. */
-        /* Create OS Thread for APP_EEPROM1_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_EEPROM1_Tasks,
-                "APP_EEPROM1_Tasks",
-                1024,
-                NULL,
-                1,
-                &xAPP_EEPROM1_Tasks);
+    
+    /* Create OS Thread for APP_EEPROM1_Tasks. */
+    (void) xTaskCreate(
+           (TaskFunction_t) lAPP_EEPROM1_Tasks,
+           "APP_EEPROM1_Tasks",
+           1024,
+           NULL,
+           1U ,
+           &xAPP_EEPROM1_Tasks);
 
     /* Create OS Thread for APP_EEPROM2_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_EEPROM2_Tasks,
-                "APP_EEPROM2_Tasks",
-                1024,
-                NULL,
-                1,
-                &xAPP_EEPROM2_Tasks);
+    (void) xTaskCreate(
+           (TaskFunction_t) lAPP_EEPROM2_Tasks,
+           "APP_EEPROM2_Tasks",
+           1024,
+           NULL,
+           1U ,
+           &xAPP_EEPROM2_Tasks);
 
     /* Create OS Thread for APP_MONITOR_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_MONITOR_Tasks,
-                "APP_MONITOR_Tasks",
-                1024,
-                NULL,
-                1,
-                &xAPP_MONITOR_Tasks);
-
+    (void) xTaskCreate(
+           (TaskFunction_t) lAPP_MONITOR_Tasks,
+           "APP_MONITOR_Tasks",
+           1024,
+           NULL,
+           1U ,
+           &xAPP_MONITOR_Tasks);
 
 
 
