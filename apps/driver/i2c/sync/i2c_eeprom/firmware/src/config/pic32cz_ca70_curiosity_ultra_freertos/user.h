@@ -64,7 +64,7 @@ extern "C" {
 // *****************************************************************************
 
 /* Size of the test string must be less than or equal to EEPROM page size (16 bytes)*/
-#define APP_EEPROM_SLAVE_ADDR                       0x0057
+#define APP_EEPROM_SLAVE_ADDR                       0x0056
 #define APP_EEPROM_ADDR_LEN_BITS                    8    
 
 //DOM-IGNORE-BEGIN
