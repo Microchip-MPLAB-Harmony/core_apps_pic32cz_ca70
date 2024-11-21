@@ -48,7 +48,6 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "bsp/bsp.h"
 #include "driver/memory/drv_memory_efc.h"
 #include "system/fs/sys_fs.h"
 #include "system/fs/sys_fs_media_manager.h"
@@ -59,14 +58,15 @@
 #include "peripheral/mpu/plib_mpu.h"
 #include "driver/memory/drv_memory.h"
 #include "peripheral/efc/plib_efc.h"
+#include "bsp/bsp.h"
 #include "peripheral/tc/plib_tc0.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "system/time/sys_time.h"
 #include "system/int/sys_int.h"
 #include "system/cache/sys_cache.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
-#include "system/time/sys_time.h"
 #include "app.h"
 
 
@@ -79,8 +79,14 @@ extern "C" {
 #endif
 // DOM-IGNORE-END
 
+/* Device Information */
+#define DEVICE_NAME          "PIC32CZ2051CA70144"
+#define DEVICE_ARCH          "CORTEX-M7"
+#define DEVICE_FAMILY        "PIC32C"
+#define DEVICE_SERIES        "PIC32CZCA70"
+
 /* CPU clock frequency */
-#define CPU_CLOCK_FREQUENCY 300000000
+#define CPU_CLOCK_FREQUENCY 300000000U
 
 // *****************************************************************************
 // *****************************************************************************

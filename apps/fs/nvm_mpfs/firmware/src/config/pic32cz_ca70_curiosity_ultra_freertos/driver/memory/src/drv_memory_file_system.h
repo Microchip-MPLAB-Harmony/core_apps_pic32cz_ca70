@@ -1,18 +1,20 @@
-/*******************************************************************************
-  TIME System Service Definitions Header File
+/******************************************************************************
+  MEMORY Driver File System Interface Implementation
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    sys_time_definitions.h
+    drv_memory_file_system.h
 
   Summary:
-    TIME System Service Definitions Header File
+    MEMORY Driver Interface Definition
 
   Description:
-    This file provides implementation-specific definitions for the TIME
-    system service's system interface.
+    The MEMORY Driver provides a interface to access the MEMORY on the PIC32
+    microcontroller. This file implements the MEMORY Driver file system interface.
+    This file should be included in the project if MEMORY driver functionality with
+    File system is needed.
 *******************************************************************************/
 
 //DOM-IGNORE-BEGIN
@@ -39,79 +41,41 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 //DOM-IGNORE-END
+#ifndef DRV_MEMORY_FILE_SYSTEM_H
+#define DRV_MEMORY_FILE_SYSTEM_H
 
-#ifndef SYS_TIME_DEFINITIONS_H
-#define SYS_TIME_DEFINITIONS_H
+// *****************************************************************************
+// *****************************************************************************
+// Section: Include Files
+// *****************************************************************************
+// *****************************************************************************
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: File includes
-// *****************************************************************************
-// *****************************************************************************
-#include "system/int/sys_int.h"
-#include "configuration.h"
+#include "driver/memory/src/drv_memory_local.h"
+#include "system/fs/sys_fs_media_manager.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
-
     extern "C" {
-
 #endif
 // DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Data Types
+// Section: Global objects
 // *****************************************************************************
 // *****************************************************************************
 
-// *****************************************************************************
-/* TIME PLIB API Set needed by the system service */
-
-typedef void (*SYS_TIME_PLIB_CALLBACK)(uint32_t data, uintptr_t context);
-typedef void (*SYS_TIME_PLIB_CALLBACK_REGISTER)(SYS_TIME_PLIB_CALLBACK callback, uintptr_t context);
-typedef uint32_t (*SYS_TIME_PLIB_FREQUENCY_GET)(void);
-typedef void (*SYS_TIME_PLIB_START)(void);
-typedef void (*SYS_TIME_PLIB_STOP)(void);
-
-
-typedef void (*SYS_TIME_PLIB_PERIOD_SET)(uint16_t period);
-typedef void (*SYS_TIME_PLIB_COMPARE_SET) (uint16_t compare);
-typedef uint16_t (*SYS_TIME_PLIB_COUNTER_GET)(void);
-
-typedef struct
-{
-    SYS_TIME_PLIB_CALLBACK_REGISTER     timerCallbackSet;
-    SYS_TIME_PLIB_START                 timerStart;
-    SYS_TIME_PLIB_STOP                  timerStop;
-    SYS_TIME_PLIB_FREQUENCY_GET         timerFrequencyGet;
-    SYS_TIME_PLIB_PERIOD_SET            timerPeriodSet;
-    SYS_TIME_PLIB_COMPARE_SET           timerCompareSet;
-    SYS_TIME_PLIB_COUNTER_GET           timerCounterGet;
-} SYS_TIME_PLIB_INTERFACE;
-
 
 // *****************************************************************************
-/* TIME system service Initialization Data Declaration */
+// *****************************************************************************
+// Section: MEMORY Driver File system interface Routines
+// *****************************************************************************
+// *****************************************************************************
 
-struct SYS_TIME_INIT_
-{
-    /* Identifies the PLIB API set to be used by the system service to access
-     * the peripheral. */
-    const SYS_TIME_PLIB_INTERFACE*  timePlib;
+void DRV_MEMORY_RegisterWithSysFs( const SYS_MODULE_INDEX drvIndex, uint8_t mediaType);
 
-    /* Interrupt source ID for the TIMER interrupt. */
-    INT_SOURCE                      hwTimerIntNum;
-
-};
-
-
-//DOM-IGNORE-BEGIN
 #ifdef __cplusplus
 }
 #endif
-//DOM-IGNORE-END
 
-
-#endif // #ifndef SYS_TIME_DEFINITIONS_H
-
+#endif //#ifndef DRV_MEMORY_FILE_SYSTEM_H
