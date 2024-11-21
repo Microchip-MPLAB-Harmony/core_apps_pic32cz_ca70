@@ -52,6 +52,7 @@
 
 #include "configuration.h"
 #include "definitions.h"
+#include "sys_tasks.h"
 
 
 // *****************************************************************************
@@ -60,25 +61,28 @@
 // *****************************************************************************
 // *****************************************************************************
 
-void _SYS_FS_Tasks(  void *pvParameters  )
+static void lSYS_FS_Tasks(  void *pvParameters  )
 {
-    while(1)
+    while(true)
     {
         SYS_FS_Tasks();
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(10U / portTICK_PERIOD_MS);
     }
 }
+
 
 
 /* Handle for the APP_Tasks. */
 TaskHandle_t xAPP_Tasks;
 
-void _APP_Tasks(  void *pvParameters  )
+
+
+static void lAPP_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_Tasks();
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(10U / portTICK_PERIOD_MS);
     }
 }
 
@@ -102,11 +106,11 @@ void SYS_Tasks ( void )
 {
     /* Maintain system services */
     
-    xTaskCreate( _SYS_FS_Tasks,
+    (void) xTaskCreate( lSYS_FS_Tasks,
         "SYS_FS_TASKS",
         SYS_FS_STACK_SIZE,
         (void*)NULL,
-        SYS_FS_PRIORITY,
+        SYS_FS_PRIORITY ,
         (TaskHandle_t*)NULL
     );
 
@@ -120,14 +124,15 @@ void SYS_Tasks ( void )
     
 
     /* Maintain the application's state machine. */
-        /* Create OS Thread for APP_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_Tasks,
-                "APP_Tasks",
-                1024,
-                NULL,
-                1,
-                &xAPP_Tasks);
-
+    
+    /* Create OS Thread for APP_Tasks. */
+    (void) xTaskCreate(
+           (TaskFunction_t) lAPP_Tasks,
+           "APP_Tasks",
+           1024,
+           NULL,
+           1U ,
+           &xAPP_Tasks);
 
 
 

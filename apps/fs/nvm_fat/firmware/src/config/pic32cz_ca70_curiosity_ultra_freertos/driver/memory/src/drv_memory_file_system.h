@@ -1,22 +1,23 @@
-/*******************************************************************************
-  User Configuration Header
+/******************************************************************************
+  MEMORY Driver File System Interface Implementation
+
+  Company:
+    Microchip Technology Inc.
 
   File Name:
-    user.h
+    drv_memory_file_system.h
 
   Summary:
-    Build-time configuration header for the user defined by this project.
+    MEMORY Driver Interface Definition
 
   Description:
-    An MPLAB Project may have multiple configurations.  This file defines the
-    build-time options for a single configuration.
-
-  Remarks:
-    It only provides macro definitions for build-time configuration options
-
+    The MEMORY Driver provides a interface to access the MEMORY on the PIC32
+    microcontroller. This file implements the MEMORY Driver file system interface.
+    This file should be included in the project if MEMORY driver functionality with
+    File system is needed.
 *******************************************************************************/
 
-// DOM-IGNORE-BEGIN
+//DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -39,41 +40,42 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
-// DOM-IGNORE-END
+//DOM-IGNORE-END
+#ifndef DRV_MEMORY_FILE_SYSTEM_H
+#define DRV_MEMORY_FILE_SYSTEM_H
 
-#ifndef USER_H
-#define USER_H
+// *****************************************************************************
+// *****************************************************************************
+// Section: Include Files
+// *****************************************************************************
+// *****************************************************************************
 
-#include "bsp/bsp.h"
+#include "driver/memory/src/drv_memory_local.h"
+#include "system/fs/sys_fs_media_manager.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
-
-extern "C" {
-
+    extern "C" {
 #endif
 // DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: User Configuration macros
+// Section: Global objects
 // *****************************************************************************
 // *****************************************************************************
 
-#define LED_ON()        LED1_On()
-#define LED_OFF()       LED1_Off()
-#define LED_TOGGLE()    LED1_Toggle()
 
-#define SWITCH_GET()    SW1_Get()
-#define SWITCH_PRESSED  SW1_STATE_PRESSED
+// *****************************************************************************
+// *****************************************************************************
+// Section: MEMORY Driver File system interface Routines
+// *****************************************************************************
+// *****************************************************************************
 
-//DOM-IGNORE-BEGIN
+void DRV_MEMORY_RegisterWithSysFs( const SYS_MODULE_INDEX drvIndex, uint8_t mediaType);
+
 #ifdef __cplusplus
 }
 #endif
-//DOM-IGNORE-END
 
-#endif // USER_H
-/*******************************************************************************
- End of File
-*/
+#endif //#ifndef DRV_MEMORY_FILE_SYSTEM_H
