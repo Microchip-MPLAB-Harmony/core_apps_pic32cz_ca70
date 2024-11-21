@@ -48,11 +48,11 @@
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-
 #include "configuration.h"
 #include "device_vectors.h"
 #include "interrupts.h"
 #include "definitions.h"
+
 
 
 // *****************************************************************************
@@ -79,10 +79,8 @@ void __attribute__((optimize("-O1"), long_call, noreturn, used))Dummy_Handler(vo
 }
 
 /* MISRAC 2012 deviation block start */
-/* MISRA C-2012 Rule 8.6 deviated 69 times.  Deviation record ID -  H3_MISRAC_2012_R_8_6_DR_1 */
+/* MISRA C-2012 Rule 8.6 deviated 68 times.  Deviation record ID -  H3_MISRAC_2012_R_8_6_DR_1 */
 /* Device vectors list dummy definition*/
-extern void vPortSVCHandler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void xPortPendSVHandler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void SUPC_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void RSTC_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void RTC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -91,10 +89,10 @@ extern void WDT_Handler                ( void ) __attribute__((weak, alias("Dumm
 extern void PMC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void EFC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void UART0_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void UART1_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOA_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOB_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOC_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void USART1_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void USART2_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOD_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOE_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -183,12 +181,12 @@ const H3DeviceVectors exception_table=
     .pfnPMC_Handler                = PMC_Handler,
     .pfnEFC_Handler                = EFC_Handler,
     .pfnUART0_Handler              = UART0_Handler,
-    .pfnUART1_Handler              = UART1_Handler,
+    .pfnUART1_Handler              = UART1_InterruptHandler,
     .pfnPIOA_Handler               = PIOA_Handler,
     .pfnPIOB_Handler               = PIOB_Handler,
     .pfnPIOC_Handler               = PIOC_Handler,
     .pfnUSART0_Handler             = USART0_InterruptHandler,
-    .pfnUSART1_Handler             = USART1_InterruptHandler,
+    .pfnUSART1_Handler             = USART1_Handler,
     .pfnUSART2_Handler             = USART2_Handler,
     .pfnPIOD_Handler               = PIOD_Handler,
     .pfnPIOE_Handler               = PIOE_Handler,
