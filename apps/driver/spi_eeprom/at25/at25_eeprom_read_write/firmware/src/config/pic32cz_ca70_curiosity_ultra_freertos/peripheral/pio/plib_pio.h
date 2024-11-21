@@ -62,31 +62,40 @@
 // *****************************************************************************
 
 
+/*** Macros for GPIO_PA10 pin ***/
+#define GPIO_PA10_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<10U))
+#define GPIO_PA10_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<10U))
+#define GPIO_PA10_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<10U))
+#define GPIO_PA10_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<10U))
+#define GPIO_PA10_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<10U))
+#define GPIO_PA10_Get()               ((PIOA_REGS->PIO_PDSR >> 10U) & 0x1U)
+#define GPIO_PA10_PIN                  PIO_PIN_PA10
+
 /*** Macros for GPIO_PA5 pin ***/
-#define GPIO_PA5_Set()               (PIOA_REGS->PIO_SODR = (1<<5))
-#define GPIO_PA5_Clear()             (PIOA_REGS->PIO_CODR = (1<<5))
-#define GPIO_PA5_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<5))
-#define GPIO_PA5_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<5))
-#define GPIO_PA5_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<5))
-#define GPIO_PA5_Get()               ((PIOA_REGS->PIO_PDSR >> 5) & 0x1)
+#define GPIO_PA5_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<5U))
+#define GPIO_PA5_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<5U))
+#define GPIO_PA5_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<5U))
+#define GPIO_PA5_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<5U))
+#define GPIO_PA5_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<5U))
+#define GPIO_PA5_Get()               ((PIOA_REGS->PIO_PDSR >> 5U) & 0x1U)
 #define GPIO_PA5_PIN                  PIO_PIN_PA5
 
 /*** Macros for GPIO_PD11 pin ***/
-#define GPIO_PD11_Set()               (PIOD_REGS->PIO_SODR = (1<<11))
-#define GPIO_PD11_Clear()             (PIOD_REGS->PIO_CODR = (1<<11))
-#define GPIO_PD11_Toggle()            (PIOD_REGS->PIO_ODSR ^= (1<<11))
-#define GPIO_PD11_OutputEnable()      (PIOD_REGS->PIO_OER = (1<<11))
-#define GPIO_PD11_InputEnable()       (PIOD_REGS->PIO_ODR = (1<<11))
-#define GPIO_PD11_Get()               ((PIOD_REGS->PIO_PDSR >> 11) & 0x1)
+#define GPIO_PD11_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<11U))
+#define GPIO_PD11_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<11U))
+#define GPIO_PD11_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<11U))
+#define GPIO_PD11_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<11U))
+#define GPIO_PD11_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<11U))
+#define GPIO_PD11_Get()               ((PIOD_REGS->PIO_PDSR >> 11U) & 0x1U)
 #define GPIO_PD11_PIN                  PIO_PIN_PD11
 
 /*** Macros for GPIO_PA0 pin ***/
-#define GPIO_PA0_Set()               (PIOA_REGS->PIO_SODR = (1<<0))
-#define GPIO_PA0_Clear()             (PIOA_REGS->PIO_CODR = (1<<0))
-#define GPIO_PA0_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<0))
-#define GPIO_PA0_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<0))
-#define GPIO_PA0_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<0))
-#define GPIO_PA0_Get()               ((PIOA_REGS->PIO_PDSR >> 0) & 0x1)
+#define GPIO_PA0_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<0U))
+#define GPIO_PA0_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<0U))
+#define GPIO_PA0_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<0U))
+#define GPIO_PA0_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<0U))
+#define GPIO_PA0_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<0U))
+#define GPIO_PA0_Get()               ((PIOA_REGS->PIO_PDSR >> 0U) & 0x1U)
 #define GPIO_PA0_PIN                  PIO_PIN_PA0
 
 
