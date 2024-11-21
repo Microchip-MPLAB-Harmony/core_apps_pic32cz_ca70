@@ -1,0 +1,18 @@
+package:
+  format-version: "1.0.0"
+  name: "core_apps_pic32cz_ca"
+  version: "v3.0.0"
+  type: "application"
+  status: "production"
+  required: false
+
+  dependencies:
+    - name: "csp"
+      type: "package"
+      version: "v3.17.0"
+    - name: "dev_packs"
+      type: "package"
+      version: "v3.17.0"
+    - name: "core"
+      type: "package"
+      version: "v3.13.0"
