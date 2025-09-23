@@ -48,10 +48,10 @@
 #define PIO_MAX_NUM_OF_CHANNELS     5U
 
 /* Array to store callback objects of each configured interrupt */
-volatile static PIO_PIN_CALLBACK_OBJ portPinCbObj[2 + 0 + 0 + 0 + 0];
+static volatile PIO_PIN_CALLBACK_OBJ portPinCbObj[1 + 0 + 0 + 0 + 0];
 
 /* Array to store number of interrupts in each PORT Channel + previous interrupt count */
-volatile static uint8_t portNumCb[PIO_MAX_NUM_OF_CHANNELS + 1] = {0U, 2U, 2U, 2U, 2U, 2U};
+static volatile uint8_t portNumCb[PIO_MAX_NUM_OF_CHANNELS + 1] = {0U, 1U, 1U, 1U, 1U, 1U};
  void PIO_Interrupt_Handler ( PIO_PORT port );
 
 /******************************************************************************
@@ -72,8 +72,7 @@ void PIO_Initialize ( void )
     ((pio_registers_t*)PIO_PORT_A)->PIO_PER = 0xFFFFFFFFU;
     ((pio_registers_t*)PIO_PORT_A)->PIO_MDDR = 0xFFFFFFFFU;
     /* PORTA Pull Up Enable/Disable as per MHC selection */
-    ((pio_registers_t*)PIO_PORT_A)->PIO_PUDR = ~0x800U;
-    ((pio_registers_t*)PIO_PORT_A)->PIO_PUER = 0x800U;
+    ((pio_registers_t*)PIO_PORT_A)->PIO_PUDR = 0xFFFFFFFFU;
     /* PORTA Pull Down Enable/Disable as per MHC selection */
     ((pio_registers_t*)PIO_PORT_A)->PIO_PPDDR = 0xFFFFFFFFU;
     /* PORTA Output Write Enable */
@@ -84,17 +83,17 @@ void PIO_Initialize ( void )
     /* Initialize PORTA pin state */
     ((pio_registers_t*)PIO_PORT_A)->PIO_ODSR = 0x0U;
     /* PORTA Additional interrupt mode Enable */
-    ((pio_registers_t*)PIO_PORT_A)->PIO_AIMER = 0xa00U;
+    ((pio_registers_t*)PIO_PORT_A)->PIO_AIMER = 0x200U;
     /* PORTA Rising Edge or High Level Interrupt Enable */
-    ((pio_registers_t*)PIO_PORT_A)->PIO_REHLSR = 0xa00U;
+    ((pio_registers_t*)PIO_PORT_A)->PIO_REHLSR = 0x200U;
     /* PORTA Interrupt Status Clear */
     ((pio_registers_t*)PIO_PORT_A)->PIO_ISR;
     /* PORTA system level interrupt will be enabled by NVIC Manager */
     /* PORTA module level Interrupt for every pin has to be enabled by user
        by calling PIO_PinInterruptEnable() API dynamically as and when needed*/
     /* PORTA Glitch/Debounce Filter Enable */
-    ((pio_registers_t*)PIO_PORT_A)->PIO_IFER = 0xa00U;
-    ((pio_registers_t*)PIO_PORT_A)->PIO_IFSCER = 0xa00U;
+    ((pio_registers_t*)PIO_PORT_A)->PIO_IFER = 0x200U;
+    ((pio_registers_t*)PIO_PORT_A)->PIO_IFSCER = 0x200U;
     /* PORTA drive control */
     ((pio_registers_t*)PIO_PORT_A)->PIO_DRIVER = 0x0U;
 
@@ -173,11 +172,9 @@ void PIO_Initialize ( void )
 
     uint32_t i;
     /* Initialize Interrupt Pin data structures */
-    portPinCbObj[0].pin = PIO_PIN_PA11;
+    portPinCbObj[0].pin = PIO_PIN_PA9;
     
-    portPinCbObj[1].pin = PIO_PIN_PA9;
-    
-    for(i=0U; i<2U; i++)
+    for(i=0U; i<1U; i++)
     {
         portPinCbObj[i].callback = NULL;
     }

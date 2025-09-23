@@ -60,9 +60,9 @@
 #define USART0_TX_INT_DISABLE()      USART0_REGS->US_IDR = US_IDR_USART_TXRDY_Msk;
 #define USART0_TX_INT_ENABLE()       USART0_REGS->US_IER = US_IER_USART_TXRDY_Msk;
 
-volatile static uint8_t USART0_ReadBuffer[USART0_READ_BUFFER_SIZE];
-volatile static USART_RING_BUFFER_OBJECT usart0Obj;
-volatile static uint8_t USART0_WriteBuffer[USART0_WRITE_BUFFER_SIZE];
+static volatile uint8_t USART0_ReadBuffer[USART0_READ_BUFFER_SIZE];
+static volatile USART_RING_BUFFER_OBJECT usart0Obj;
+static volatile uint8_t USART0_WriteBuffer[USART0_WRITE_BUFFER_SIZE];
 
 void USART0_Initialize( void )
 {
