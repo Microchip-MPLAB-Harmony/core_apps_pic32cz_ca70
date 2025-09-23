@@ -47,7 +47,7 @@ It allows user to Program, Erase and lock the on-chip FLASH memory.
 
 static uint32_t efc_status = 0;
 
-volatile static EFC_OBJECT efc;
+static volatile EFC_OBJECT efc;
 
 void EFC_Initialize(void)
 {
