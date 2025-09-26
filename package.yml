@@ -1,18 +1,15 @@
 package:
   format-version: "1.0.0"
   name: "core_apps_pic32cz_ca70"
-  version: "v3.0.0"
+  version: "v3.1.0"
   type: "application"
   status: "production"
   required: false
 
   dependencies:
-    - name: "bsp"
-      type: "package"
-      version: "v3.21.1"
     - name: "FreeRTOS-Kernel"
       type: "package"
       version: "V11.1.0"
-    - name: "core"
+    - name: "bsp"
       type: "package"
-      version: "v3.14.0"
+      version: "v3.23.0"
